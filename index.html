@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takeaways 首頁：雲端廚房遷移計畫</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Nunito', 'Microsoft JhengHei', sans-serif;
+            background-color: #F0F9FF;
+            /* 淺藍色網格背景，呼應投影片設計 */
+            background-image: 
+                linear-gradient(#bae6fd 1px, transparent 1px),
+                linear-gradient(90deg, #bae6fd 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .card-hover {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            z-index: 10;
+        }
+
+        .timeline-badge {
+            background-color: #4A6E8C; /* 深藍色標籤 */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-align: center;
+            min-width: 90px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 標題下方的淺藍色漸層底線 */
+        .title-underline {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+        .title-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, #93C5FD 0%, rgba(147,197,253,0) 100%);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .avatar-bg {
+            background-color: white;
+            background-repeat: no-repeat;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <header class="bg-orange-500 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-4 lg:py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl lg:text-4xl">👨‍🍳</span>
+                <div>
+                    <h1 class="text-xl lg:text-2xl font-black tracking-wider">數據主廚聯賽：雲端廚房遷移計畫</h1>
+                    <p class="text-orange-100 text-xs lg:text-sm font-bold opacity-90">2026 - 2029 Roadmap</p>
+                </div>
+            </div>
+            <div class="hidden sm:block text-3xl lg:text-4xl">☁️🐭🦆</div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 lg:py-12 w-full space-y-12 lg:space-y-16">
+        
+        <!-- 頁面標題區 -->
+        <section class="text-center space-y-2 relative">
+            <h2 class="text-4xl lg:text-6xl font-black text-[#4A6E8C] tracking-wide">Takeaways</h2>
+            <p class="text-xl lg:text-2xl font-bold text-gray-600">本次主線任務與各區代表</p>
+            
+            <!-- 左側小老鼠裝飾 (隱藏於小螢幕) -->
+            <div class="hidden lg:block absolute -left-4 -top-8 text-7xl opacity-90">
+                <img src="https://cdn3.iconfinder.com/data/icons/food-delivery-4/64/31_cloche_food_cover_restaurant-512.png" alt="cloche" class="w-16 h-16 absolute -top-4 -left-4 drop-shadow-md">
+                🐭
+            </div>
+        </section>
+        
+        <!-- 年度里程碑卡片區 -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
+            
+            <!-- 2026 -->
+            <div class="bg-white rounded-[2rem] p-6 lg:p-8 shadow-md border-2 border-blue-100 card-hover relative overflow-hidden flex flex-col h-full">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10 opacity-50"></div>
+                <h3 class="text-4xl lg:text-5xl font-black text-[#6B96B8] mb-1">26</h3>
+                <h4 class="text-xl lg:text-2xl font-bold text-gray-800 mb-6 title-underline pb-2">數據遷移</h4>
+                
+                <div class="space-y-6 flex-grow">
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div class="timeline-badge shrink-0">數據</div>
+                        <ul class="list-disc pl-5 text-gray-700 font-semibold space-y-1 mt-1 sm:mt-0">
+                            <li>TD <span class="text-gray-500 text-sm">(數據兩部)</span></li>
+                            <li>HDP、Model <span class="text-gray-500 text-sm">(Pilot)</span></li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div class="timeline-badge shrink-0">平台</div>
+                        <ul class="list-disc pl-5 text-gray-700 font-semibold space-y-1 mt-1 sm:mt-0">
+                            <li>CN、MA、Tableau</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div class="timeline-badge shrink-0">分析師</div>
+                        <ul class="list-disc pl-5 text-gray-700 font-semibold space-y-1 mt-1 sm:mt-0">
+                            <li>兩部 Redshift 教育訓練</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2027-28 -->
+            <div class="bg-white rounded-[2rem] p-6 lg:p-8 shadow-md border-2 border-blue-100 card-hover relative overflow-hidden flex flex-col h-full scale-100 lg:scale-105 z-10 border-t-8 border-t-[#6B96B8]">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10 opacity-50"></div>
+                <h3 class="text-4xl lg:text-5xl font-black text-[#6B96B8] mb-1">27-28</h3>
+                <h4 class="text-xl lg:text-2xl font-bold text-gray-800 mb-6 title-underline pb-2">服務遷移</h4>
+                
+                <div class="space-y-6 flex-grow">
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div class="timeline-badge shrink-0">數據</div>
+                        <ul class="list-disc pl-5 text-gray-700 font-semibold space-y-1 mt-1 sm:mt-0">
+                            <li>TD <span class="text-gray-500 text-sm">(全行)</span></li>
+                            <li>HDP、Model <span class="text-gray-500 text-sm">(完整)</span></li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div class="timeline-badge shrink-0">平台</div>
+                        <ul class="list-disc pl-5 text-gray-700 font-semibold space-y-1 mt-1 sm:mt-0">
+                            <li>其餘數據平台</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                        <div class="timeline-badge shrink-0">分析師</div>
+                        <ul class="list-disc pl-5 text-gray-700 font-semibold space-y-1 mt-1 sm:mt-0">
+                            <li>兩部 Sagemaker 教育訓練 / 分析師上雲</li>
+                            <li>全行 Redshift 教育訓練</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2029 -->
+            <div class="bg-white rounded-[2rem] p-6 lg:p-8 shadow-md border-2 border-blue-100 card-hover relative overflow-hidden flex flex-col h-full">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10 opacity-50"></div>
+                <h3 class="text-4xl lg:text-5xl font-black text-[#6B96B8] mb-1">29</h3>
+                <h4 class="text-xl lg:text-2xl font-bold text-gray-800 mb-6 title-underline pb-2">數據移出TD</h4>
+                
+                <div class="space-y-4 flex-grow mt-2">
+                    <div class="flex items-start gap-3 bg-green-50 p-3 rounded-xl border border-green-100">
+                        <span class="text-green-500 text-xl font-black">✓</span>
+                        <p class="text-gray-800 font-bold mt-0.5">完成 TD、HDP 上雲</p>
+                    </div>
+                    <div class="flex items-start gap-3 bg-green-50 p-3 rounded-xl border border-green-100">
+                        <span class="text-green-500 text-xl font-black">✓</span>
+                        <p class="text-gray-800 font-bold mt-0.5">分析服務從 TD 正式退場</p>
+                    </div>
+                    <div class="flex items-start gap-3 bg-green-50 p-3 rounded-xl border border-green-100">
+                        <span class="text-green-500 text-xl font-black">✓</span>
+                        <p class="text-gray-800 font-bold mt-0.5">完成平台上雲</p>
+                    </div>
+                    <div class="flex items-start gap-3 bg-green-50 p-3 rounded-xl border border-green-100">
+                        <span class="text-green-500 text-xl font-black">✓</span>
+                        <p class="text-gray-800 font-bold mt-0.5">完成全行分析師上雲</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 各區代表團隊介紹 -->
+        <section class="pt-8">
+            <h3 class="text-center text-2xl font-extrabold text-gray-700 mb-8 border-b-2 border-slate-300 pb-4 max-w-sm mx-auto">🤝 團隊陣容與各區代表</h3>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
+                
+                <!-- 廚房維運 -->
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col items-center text-center card-hover group">
+                    <div class="text-sm font-bold text-slate-500 mb-3 tracking-widest border-b border-slate-200 w-full pb-2">廚房維運</div>
+                    <div class="w-20 h-20 rounded-full border-4 border-blue-200 avatar-bg transition-transform group-hover:scale-110" style="background-image: url('廚房維運.png'); background-size: cover; background-position: center top;"></div>
+                    <div class="mt-3">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-bold">雲端</span>
+                        <p class="font-black text-gray-800 mt-1">DA 韋伶</p>
+                    </div>
+                </div>
+
+                <!-- 廚務 -->
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col items-center text-center card-hover group">
+                    <div class="text-sm font-bold text-slate-500 mb-3 tracking-widest border-b border-slate-200 w-full pb-2">廚務</div>
+                    <div class="w-20 h-20 rounded-full border-4 border-green-200 avatar-bg transition-transform group-hover:scale-110" style="background-image: url('預製廚務.png'); background-size: cover; background-position: center top;"></div>
+                    <div class="mt-3 space-y-1">
+                        <div class="flex items-center justify-center gap-1">
+                            <span class="text-[10px] bg-slate-100 text-slate-600 px-1 rounded font-bold">地端</span>
+                            <p class="text-xs font-black text-gray-800">DM 佳惠</p>
+                        </div>
+                        <div class="flex items-center justify-center gap-1">
+                            <span class="text-[10px] bg-blue-100 text-blue-700 px-1 rounded font-bold">雲端</span>
+                            <p class="text-xs font-black text-gray-800">DM 思涵, DS 沁如</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI廚務 -->
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col items-center text-center card-hover group">
+                    <div class="text-sm font-bold text-slate-500 mb-3 tracking-widest border-b border-slate-200 w-full pb-2">AI廚務</div>
+                    <div class="w-20 h-20 rounded-full border-4 border-purple-200 avatar-bg transition-transform group-hover:scale-110" style="background-image: url('image_d1c080.png'); background-size: 800%; background-position: 34% 77%;"></div>
+                    <div class="mt-3">
+                        <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded font-bold">AI</span>
+                        <p class="font-black text-gray-800 mt-1">秀憶</p>
+                    </div>
+                </div>
+
+                <!-- 主廚 -->
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col items-center text-center card-hover group">
+                    <div class="text-sm font-bold text-slate-500 mb-3 tracking-widest border-b border-slate-200 w-full pb-2">主廚</div>
+                    <div class="w-20 h-20 rounded-full border-4 border-orange-200 avatar-bg transition-transform group-hover:scale-110" style="background-image: url('image_d1c080.png'); background-size: 800%; background-position: 61% 51%;"></div>
+                    <div class="mt-3 grid grid-cols-2 gap-x-2 gap-y-1 text-xs">
+                        <p class="font-black text-gray-800">BA 綉雪</p>
+                        <p class="font-black text-gray-800">CM 己茵</p>
+                        <p class="font-black text-gray-800">RI 智皓</p>
+                        <p class="font-black text-gray-800">DP 香禹</p>
+                    </div>
+                </div>
+
+                <!-- 餐廳 -->
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col items-center text-center card-hover group col-span-2 md:col-span-1 md:col-start-2 lg:col-span-1 lg:col-start-auto">
+                    <div class="text-sm font-bold text-slate-500 mb-3 tracking-widest border-b border-slate-200 w-full pb-2">餐廳</div>
+                    <div class="w-20 h-20 rounded-full border-4 border-red-200 avatar-bg transition-transform group-hover:scale-110" style="background-image: url('image_d1c080.png'); background-size: 800%; background-position: 86% 30%;"></div>
+                    <div class="mt-3">
+                        <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded font-bold">平台</span>
+                        <p class="font-black text-gray-800 mt-1">各平台 PO</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+</html>
