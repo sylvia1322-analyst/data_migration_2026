@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>數據主廚聯賽：雲端廚房遷移計畫</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 自訂 Pixar 動畫風格的配色與字體設定 */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Nunito', 'Microsoft JhengHei', sans-serif;
+            background-color: #FFF8E7;
+            background-image: radial-gradient(#FDE68A 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .card-hover {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .modal-enter {
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased relative">
+
+    <header class="bg-orange-500 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-black tracking-wider flex items-center gap-3">
+                    <span class="text-4xl">👨‍🍳</span> 數據主廚聯賽
+                </h1>
+                <p class="text-orange-100 mt-1 font-bold">雲端廚房遷移計畫 2026-2029</p>
+            </div>
+            <div class="hidden md:block text-5xl">☁️🐭</div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-10 space-y-16">
+        
+        <section>
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-orange-600 mb-2">點擊認識遷移職人</h2>
+                <p class="text-gray-600">選擇你想了解的廚房核心角色，看看他們的專屬任務！</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6" id="character-grid">
+                </div>
+        </section>
+
+        <section class="bg-white rounded-3xl shadow-xl p-8 border-4 border-orange-100">
+            <h2 class="text-2xl font-extrabold text-gray-800 mb-6 border-b-2 border-orange-200 pb-2">📊 廚房進度與生存看板</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-blue-50 rounded-2xl p-6 border-2 border-blue-100">
+                    <h3 class="text-xl font-bold text-blue-700 mb-3 flex items-center gap-2">💡 遷移 Must Know</h3>
+                    <ul class="space-y-2 text-sm text-blue-900 list-disc pl-4">
+                        <li>雲端環境將使用全新工具 (AWS 優先)。</li>
+                        <li>全新暗碼機制：雲端與地端加密方式不同。</li>
+                        <li>資料結構變更：Table 命名與格式將有部分差異。</li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50 rounded-2xl p-6 border-2 border-green-100">
+                    <h3 class="text-xl font-bold text-green-700 mb-3 flex items-center gap-2">⏳ 廚房進度看板</h3>
+                    <div class="relative pl-4 border-l-2 border-green-300 space-y-4 text-sm text-green-900">
+                        <div class="relative"><span class="absolute -left-6 top-1 w-3 h-3 bg-green-500 rounded-full"></span><strong class="text-green-800">2026：</strong>數據兩部上雲</div>
+                        <div class="relative"><span class="absolute -left-6 top-1 w-3 h-3 bg-green-400 rounded-full"></span><strong class="text-green-800">2027-28：</strong>全行分析行為上雲</div>
+                        <div class="relative"><span class="absolute -left-6 top-1 w-3 h-3 bg-orange-400 rounded-full"></span><strong class="text-green-800">2029：</strong>完美移出 TD 舊廚房</div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 rounded-2xl p-6 border-2 border-purple-100">
+                    <h3 class="text-xl font-bold text-purple-700 mb-3 flex items-center gap-2">🧰 求生工具箱</h3>
+                    <div class="space-y-3">
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition">下載上雲控管表</button>
+                        <button class="w-full bg-white border-2 border-purple-600 text-purple-600 hover:bg-purple-50 font-bold py-2 px-4 rounded-lg transition">Redshift 課程報名 (Q3)</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-12 mt-10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="text-4xl mb-4">🚀</div>
+            <h2 class="text-2xl font-bold mb-4">這不僅是技術遷移，更是行為的轉變。</h2>
+            <p class="text-gray-400 text-lg">從 2026 年開始，讓我們專注於眼前的每一步，共同為 2029 年完美移出舊廚房做好準備！</p>
+        </div>
+    </footer>
+
+    <div id="character-modal" class="fixed inset-0 bg-gray-900 bg-opacity-60 z-50 hidden flex items-center justify-center backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl relative modal-enter border-4 border-orange-400 overflow-hidden">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 focus:outline-none bg-gray-100 rounded-full p-2 transition z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="bg-orange-100 p-6 flex items-center gap-6 border-b border-orange-200">
+                <div id="modal-icon-container"></div>
+                <div>
+                    <h2 id="modal-title" class="text-3xl font-black text-gray-800"></h2>
+                    <p id="modal-role" class="text-orange-600 font-bold text-lg mt-1"></p>
+                </div>
+            </div>
+            
+            <div class="p-6 space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold border-l-4 border-orange-500 pl-3 mb-2">🎯 核心任務</h3>
+                    <ul id="modal-tasks" class="list-disc pl-8 space-y-2 text-gray-700"></ul>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                    <h3 class="text-lg font-bold text-blue-800 mb-2">🤝 合作成員與協作事項</h3>
+                    <div id="modal-partners" class="space-y-2 text-blue-900 text-sm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 角色資料庫
+        const characterData = [
+            {
+                id: 'da',
+                role: '廚房維運：基礎建設設計師',
+                name: 'DA 韋伶',
+                icon: '🏗️',
+                imageUrl: 'https://lurl.cc/uOiId', // 🌟 在這裡設定了您提供的圖片！
+                bgColor: 'bg-blue-100',
+                textColor: 'text-blue-800',
+                tasks: [
+                    '打造對應 AWS 的基礎建設與介接管道。',
+                    '管理雲端環境的系統服務架構、權限與預算。',
+                    '協助廚務、主廚們在新中央廚房工作流程順利銜接，推動平台自主應用。'
+                ],
+                partners: [
+                    '<strong>主題餐廳負責人 DP：</strong>溝通系統功能需求與雲端資料介接架構。',
+                    '<strong>主廚們：</strong>說明分析環境的架構需求。',
+                    '<strong>廚務與 AI 廚務：</strong>說明營運環境需求與架構需求。'
+                ]
+            },
+            {
+                id: 'dm',
+                role: '廚務團隊：導檔與整檔專家',
+                name: 'DM 思涵 / DS 沁如',
+                icon: '📦',
+                imageUrl: '', // 如果有其他人的圖片，填入網址即可替換 Emoji
+                bgColor: 'bg-green-100',
+                textColor: 'text-green-800',
+                tasks: [
+                    '執行 TD 數據遷移，包含 585 張月表及 10,800 支批次的遷移工程。',
+                    '開發導檔、整檔與 ETL 流程。',
+                    '提供「雲地資料對照表」供下游分析使用。'
+                ],
+                partners: [
+                    '<strong>主廚區代表、廚房維運：</strong>蒐集基於分析、HDP、平台所需資料範圍並安排搬遷計畫。'
+                ]
+            },
+            {
+                id: 'ai',
+                role: 'AI 廚務：模型遷移先鋒',
+                name: 'AI 秀憶',
+                icon: '🤖',
+                imageUrl: '',
+                bgColor: 'bg-purple-100',
+                textColor: 'text-purple-800',
+                tasks: [
+                    '負責 Model 流程的搬遷與 AWS Sagemaker 環境接軌。',
+                    '推動「債券需求模型」與「債管模型」的 Pilot 試行案。',
+                    '開發 GAI 應用與 GenBI 功能的雲端導入。'
+                ],
+                partners: [
+                    '<strong>DA 韋伶：</strong>確保模型訓練所需的計算資源與雲端環境配置。'
+                ]
+            },
+            {
+                id: 'chef',
+                role: '主廚：分析料理師',
+                name: 'BA 綉雪 / RI 智皓 / CM 己茵 / DP 香禹',
+                icon: '🍳',
+                imageUrl: '',
+                bgColor: 'bg-orange-100',
+                textColor: 'text-orange-800',
+                tasks: [
+                    '釐清分析情境並決定出菜方式（報表、行銷名單、ad-hoc 分析）。',
+                    '掌握雲端工具差異，透過 AWS Redshift 進行地端分析 SQL 改寫與資料探索。',
+                    '配合雲端資安最小化開放原則，執行安全數據匯出入。'
+                ],
+                partners: [
+                    '<strong>廚務團隊：</strong>確認所需資料已排入上雲控管表並完成驗證。'
+                ]
+            },
+            {
+                id: 'po',
+                role: '餐廳負責人：數據應用前哨站',
+                name: '各平台 PO',
+                icon: '🏪',
+                imageUrl: '',
+                bgColor: 'bg-red-100',
+                textColor: 'text-red-800',
+                tasks: [
+                    '設計合適的使用者情境並評估前端系統上雲的需求與功能（如 Tableau, MA, CN）。',
+                    '針對資料需求與功能需求，安排對應資源，進行雲端遷移。'
+                ],
+                partners: [
+                    '<strong>廚房維運：</strong>協助數據平台所需之系統功能開發與架構、資料流設計。',
+                    '<strong>廚務團隊：</strong>安排資料上雲與實際導整檔程式搬遷。'
+                ]
+            }
+        ];
+
+        // 動態生成角色卡片
+        const grid = document.getElementById('character-grid');
+        
+        characterData.forEach(char => {
+            const card = document.createElement('div');
+            card.className = `bg-white rounded-3xl p-6 text-center cursor-pointer border-2 border-gray-100 shadow-sm card-hover flex flex-col items-center justify-center relative overflow-hidden`;
+            card.onclick = () => openModal(char);
+            
+            // 判斷要顯示真實圖片還是 Emoji
+            const avatarHtml = char.imageUrl 
+                ? `<img src="${char.imageUrl}" alt="${char.name}" class="w-full h-full object-cover rounded-full shadow-inner border-4 border-white">` 
+                : `<div class="w-full h-full rounded-full ${char.bgColor} flex items-center justify-center shadow-inner border-4 border-white">${char.icon}</div>`;
+
+            card.innerHTML = `
+                <div class="w-24 h-24 text-4xl mb-4 ${char.textColor}">
+                    ${avatarHtml}
+                </div>
+                <h3 class="font-black text-gray-800 text-lg leading-tight mb-1 z-10">${char.name}</h3>
+                <span class="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded-md z-10">${char.role.split('：')[0]}</span>
+            `;
+            grid.appendChild(card);
+        });
+
+        // Modal 控制邏輯
+        const modal = document.getElementById('character-modal');
+        
+        function openModal(char) {
+            // Modal 頭像處理
+            const modalIconContainer = document.getElementById('modal-icon-container');
+            if (char.imageUrl) {
+                modalIconContainer.innerHTML = `<img src="${char.imageUrl}" class="w-24 h-24 object-cover rounded-2xl shadow-sm border-4 border-white shrink-0">`;
+            } else {
+                modalIconContainer.innerHTML = `<div class="w-24 h-24 text-6xl bg-white flex items-center justify-center rounded-2xl shadow-sm border-2 border-orange-200 shrink-0">${char.icon}</div>`;
+            }
+
+            document.getElementById('modal-title').innerText = char.name;
+            document.getElementById('modal-role').innerText = char.role;
+            
+            // 填入任務
+            const tasksUl = document.getElementById('modal-tasks');
+            tasksUl.innerHTML = '';
+            char.tasks.forEach(task => {
+                const li = document.createElement('li');
+                li.innerText = task;
+                tasksUl.appendChild(li);
+            });
+
+            // 填入合作夥伴
+            const partnersDiv = document.getElementById('modal-partners');
+            partnersDiv.innerHTML = '';
+            char.partners.forEach(partner => {
+                const p = document.createElement('p');
+                p.className = "flex items-start gap-2";
+                p.innerHTML = `<span class="mt-1">🔹</span> <span>${partner}</span>`;
+                partnersDiv.appendChild(p);
+            });
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        // 點擊 Modal 外部關閉
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
