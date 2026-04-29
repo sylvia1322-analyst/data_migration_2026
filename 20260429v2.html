@@ -200,7 +200,8 @@
             </div>
             
             <div class="relative w-full pb-6 lg:pb-12 pt-4">
-                <div class="flex flex-col lg:grid lg:grid-cols-[1fr_auto_160px] lg:grid-rows-[auto_1fr] gap-x-6 gap-y-4 w-full max-w-5xl mx-auto items-center lg:items-stretch">
+                <!-- 調整了最右側欄位的寬度為 180px，讓內容更有呼吸空間 -->
+                <div class="flex flex-col lg:grid lg:grid-cols-[1fr_auto_180px] lg:grid-rows-[auto_1fr] gap-x-6 gap-y-4 w-full max-w-5xl mx-auto items-center lg:items-stretch">
                     
                     <!-- DA 廚房維運 (左上) -->
                     <div class="lg:col-start-1 lg:row-start-1 flex justify-center lg:justify-start lg:pl-10 w-full lg:w-auto z-10 lg:-mb-6">
@@ -213,17 +214,7 @@
                         </div>
                     </div>
 
-                    <!-- DP 餐廳負責人 (右上) -->
-                    <div class="lg:col-start-3 lg:row-start-1 flex justify-center lg:justify-center w-full lg:w-auto z-10 lg:-mb-6 lg:mt-6 order-4 lg:order-none mt-8 lg:mt-0">
-                        <div class="flex flex-col items-center gap-2 cursor-pointer card-hover map-card-hover bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-sm border border-slate-200" onclick="openModal('po')">
-                            <!-- 已更新為主題餐廳.png -->
-                            <div class="w-20 h-20 rounded-full bg-white bg-no-repeat shadow-md border-[3px] border-slate-200" style="background-image: url('主題餐廳.png'); background-size: cover; background-position: center top;"></div>
-                            <div class="text-center">
-                                <p class="font-bold text-slate-800">餐廳負責人</p>
-                                <p class="text-[10px] text-slate-500 font-bold hidden lg:block">平台遷移統籌</p>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- 移除原本位於右上角的 DP 餐廳負責人獨立區塊 -->
 
                     <!-- 中央廚房資料流 (深灰色外框) -->
                     <div class="lg:col-start-1 lg:row-start-2 border-[4px] border-[#7A869A] rounded-[2rem] lg:rounded-[3rem] p-5 lg:p-8 relative flex flex-col lg:flex-row items-stretch gap-4 lg:gap-6 bg-white/60 backdrop-blur-sm w-full order-2 lg:order-none mt-2 lg:mt-0 shadow-lg">
@@ -235,7 +226,7 @@
                                 <div class="w-16 h-16 shrink-0 rounded-full bg-white bg-no-repeat shadow-inner border border-slate-100" style="background-image: url('預製廚務.png'); background-size: cover; background-position: center top;"></div>
                                 <div class="flex flex-col">
                                     <p class="font-bold text-slate-800 whitespace-nowrap lg:text-lg">廚務</p>
-                                    <p class="text-[10px] text-slate-500 font-bold">導檔程式遷移</p>
+                                    <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">導檔程式遷移</p>
                                 </div>
                             </div>
                             <div class="text-xl font-bold text-slate-400 mt-2 tracking-widest">食材區</div>
@@ -250,7 +241,7 @@
                                 <div class="w-16 h-16 shrink-0 rounded-full bg-white bg-no-repeat shadow-inner border border-slate-100" style="background-image: url('預製廚務.png'); background-size: cover; background-position: center top;"></div>
                                 <div class="flex flex-col">
                                     <p class="font-bold text-slate-800 whitespace-nowrap lg:text-lg">廚務</p>
-                                    <p class="text-[10px] text-slate-500 font-bold">整檔程式遷移</p>
+                                    <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">整檔程式遷移</p>
                                 </div>
                                 <div class="ml-auto text-lg lg:text-xl font-bold text-slate-400 pr-2">加工區</div>
                             </div>
@@ -259,7 +250,7 @@
                                 <div class="w-16 h-16 shrink-0 rounded-full bg-white bg-no-repeat shadow-inner border border-slate-100" style="background-image: url('AI廚務.png'); background-size: cover; background-position: center top;"></div>
                                 <div class="flex flex-col">
                                     <p class="font-bold text-slate-800 whitespace-nowrap lg:text-lg">AI廚務</p>
-                                    <p class="text-[10px] text-slate-500 font-bold">Model程式遷移</p>
+                                    <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">Model程式遷移</p>
                                 </div>
                                 <div class="ml-auto text-lg lg:text-xl font-bold text-slate-400 pr-2">AI加工區</div>
                             </div>
@@ -275,7 +266,7 @@
                                 <div class="w-16 h-16 shrink-0 rounded-full bg-white bg-no-repeat shadow-inner border border-slate-100" style="background-image: url('主廚.png'); background-size: cover; background-position: center top;"></div>
                                 <div class="flex flex-col">
                                     <p class="font-bold text-slate-800 whitespace-nowrap lg:text-lg">主廚</p>
-                                    <p class="text-[10px] text-slate-500 font-bold">手邊程式遷移</p>
+                                    <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">手邊程式遷移</p>
                                 </div>
                             </div>
                             <div class="text-xl font-bold text-slate-400 mt-2 tracking-widest">主廚區</div>
@@ -287,9 +278,17 @@
                         <div class="text-[#7A869A] text-4xl lg:text-5xl font-black rotate-90 lg:rotate-0 drop-shadow-md">▶</div>
                     </div>
 
-                    <!-- 4. 主題餐廳 -->
-                    <div class="lg:col-start-3 lg:row-start-2 border-[3px] border-[#B3D4FF] rounded-[2.5rem] bg-white/95 p-6 flex items-center justify-center shadow-lg card-hover map-card-hover cursor-pointer min-h-[120px] lg:min-h-[350px] w-full order-5 lg:order-none" onclick="openModal('po')">
-                        <div class="text-2xl lg:text-3xl font-bold text-slate-500 tracking-[0.3em] lg:vertical-text">主題餐廳</div>
+                    <!-- 4. 主題餐廳 (將餐廳負責人合併至此) -->
+                    <div class="lg:col-start-3 lg:row-start-2 border-[3px] border-[#B3D4FF] rounded-[2.5rem] bg-white/95 p-6 flex flex-col items-center justify-center shadow-lg card-hover map-card-hover cursor-pointer min-h-[120px] lg:min-h-[350px] w-full order-5 lg:order-none gap-4" onclick="openModal('po')">
+                        <div class="flex flex-col items-center gap-3 w-full justify-center mt-2">
+                            <div class="w-20 h-20 rounded-full bg-white bg-no-repeat shadow-inner border-[3px] border-slate-200" style="background-image: url('主題餐廳.png'); background-size: cover; background-position: center top;"></div>
+                            <div class="text-center">
+                                <p class="font-bold text-slate-800 lg:text-lg">餐廳負責人</p>
+                                <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">平台遷移統籌</p>
+                            </div>
+                        </div>
+                        <!-- 文字與食材區相同大小與配色 -->
+                        <div class="text-xl font-bold text-slate-400 mt-auto tracking-widest">主題餐廳</div>
                     </div>
 
                 </div>
