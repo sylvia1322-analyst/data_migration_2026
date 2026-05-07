@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>數據上雲：中央廚房遷移計畫</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Nunito', 'Microsoft JhengHei', sans-serif;
+            background-color: #F8FAFC; /* 質感淺灰白底色 */
+            /* 淺灰色網格背景，呼應投影片設計 */
+            background-image: 
+                linear-gradient(#e2e8f0 1px, transparent 1px),
+                linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .card-hover {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            z-index: 30;
+        }
+
+        @media (min-width: 1024px) {
+            .map-card-hover:hover {
+                transform: translateY(-10px) scale(1.05);
+                z-index: 30;
+            }
+        }
+
+        .timeline-badge {
+            background-color: #4A6E8C; /* 投影片標題的深藍色 */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-align: center;
+            min-width: 90px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .title-underline {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+        .title-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, #93C5FD 0%, rgba(147,197,253,0) 100%);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            letter-spacing: 0.15em;
+        }
+
+        .modal-enter {
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <!-- 頁首改為沉穩的深藍色 -->
+    <header class="bg-[#4A6E8C] text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-4 lg:py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl lg:text-4xl">🐭</span>
+                <div>
+                    <h1 class="text-xl lg:text-2xl font-black tracking-wider">數據上雲：中央廚房遷移計畫</h1>
+                    <p class="text-blue-100 text-xs lg:text-sm font-bold opacity-90">2026 - 2029 Roadmap</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 lg:py-12 w-full space-y-16">
+
+        <!-- ================= 區塊 1：中央廚房藍圖與遷移夥伴 ================= -->
+        <section class="pt-4">
+            <div class="text-center mb-6 lg:mb-10">
+                <h2 class="text-3xl lg:text-4xl font-black text-[#4A6E8C] mb-2 tracking-wide">中央廚房與遷移夥伴</h2>
+                <p class="text-slate-500 text-sm lg:text-base px-2 font-bold">選擇各區角色，了解他們的專屬任務！</p>
+            </div>
+            
+            <div class="relative w-full pb-6 lg:pb-12 pt-4">
+                <div class="flex flex-col lg:grid lg:grid-cols-[1fr_auto_180px] lg:grid-rows-[auto_1fr] gap-x-6 gap-y-4 w-full max-w-5xl mx-auto items-center lg:items-stretch">
+                    
+                    <!-- DA 廚房維運 (左上) -->
+                    <div class="lg:col-start-1 lg:row-start-1 flex justify-center lg:justify-start lg:pl-10 w-full lg:w-auto z-10 lg:-mb-6">
+                        <div class="flex flex-col lg:flex-row items-center gap-3 cursor-pointer card-hover map-card-hover bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-sm border border-slate-200" onclick="openModal('da')">
+                            <div class="w-20 h-20 lg:w-24 lg:h-24 shrink-0 rounded-full bg-white bg-no-repeat shadow-md border-[3px] border-slate-200" style="background-image: url('廚房維運.png'); background-size: cover; background-position: center top;"></div>
+                            <div class="text-center lg:text-left">
+                                <p class="font-bold text-slate-800 lg:text-lg">廚房維運</p>
+                                <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">打造對應AWS基礎建設<br>與介接架構</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 中央廚房資料流 (深灰色外框) -->
+                    <div class="lg:col-start-1 lg:row-start-2 border-[4px] border-[#7A869A] rounded-[2rem] lg:rounded-[3rem] p-5 lg:p-8 relative flex flex-col lg:flex-row items-stretch gap-4 lg:gap-6 bg-white/60 backdrop-blur-sm w-full order-2 lg:order-none mt-2 lg:mt-0 shadow-lg">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-3 text-[#7A869A] font-bold text-xs lg:text-sm tracking-widest border border-slate-200 rounded-md shadow-sm">中央廚房範圍</div>
+
+                        <!-- 1. 食材區 -->
+                        <div class="flex-1 border-[3px] border-[#B3D4FF] rounded-[2rem] bg-white p-4 flex flex-col items-center justify-center gap-2 cursor-pointer card-hover map-card-hover shadow-sm" onclick="openModal('dm_ingredient')">
+                            <div class="flex items-center gap-3 w-full justify-center mt-2">
+                                <div class="w-16 h-16 shrink-0 rounded-full bg-white bg-no-repeat shadow-inner border border-slate-100" style="background-image: url('預製廚務.png'); background-size: cover; background-position: center top;"></div>
+                                <div class="flex flex-col">
+                                    <p class="font-bold text-slate-800 whitespace-nowrap lg:text-lg">廚務</p>
+                                    <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">導檔程式遷移</p>
+                                </div>
+                            </div>
+                            <div class="text-xl font-bold text-slate-400 mt-2 tracking-widest">食材區</div>
+                        </div>
+
+                        <!-- 箭頭 -->
+                        <div class="flex items-center justify-center text-slate-400 text-3xl font-black rotate-90 lg:rotate-0 drop-shadow-sm">▶</div>
+
+                        <!-- 2. 加工區 -->
+                        <div class="flex-[1.2] border-[3px] border-[#B3D4FF] rounded-[2rem] bg-white p-4 flex flex-col gap-4 shadow-sm">
+                            <div class="flex items-center gap-3 cursor-pointer card-hover map-card-hover p-2 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100" onclick="openModal('dm_ds_process')">
+                                <div class="w-16 h-16 shrink-0 rounded-full bg-white bg-no-repeat shadow-inner border border-slate-100" style="background-image: url('預製廚務.png'); background-size: cover; background-position: center top;"></div>
+                                <div class="flex flex-col">
+                                    <p class="font-bold text-slate-800 whitespace-nowrap lg:text-lg">廚務</p>
+                                    <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">整檔程式遷移</p>
+                                </div>
+                                <div class="ml-auto text-lg lg:text-xl font-bold text-slate-400 pr-2">加工區</div>
+                            </div>
+                            <div class="flex items-center gap-3 cursor-pointer card-hover map-card-hover p-2 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100" onclick="openModal('ai')">
+                                <div class="w-16 h-16 shrink-0 rounded-full bg-white bg-no-repeat shadow-inner border border-slate-100" style="background-image: url('AI廚務.png'); background-size: cover; background-position: center top;"></div>
+                                <div class="flex flex-col">
+                                    <p class="font-bold text-slate-800 whitespace-nowrap lg:text-lg">AI廚務</p>
+                                    <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">Model程式遷移</p>
+                                </div>
+                                <div class="ml-auto text-lg lg:text-xl font-bold text-slate-400 pr-2">AI加工區</div>
+                            </div>
+                        </div>
+
+                        <!-- 箭頭 -->
+                        <div class="flex items-center justify-center text-slate-400 text-3xl font-black rotate-90 lg:rotate-0 drop-shadow-sm">▶</div>
+
+                        <!-- 3. 主廚區 -->
+                        <div class="flex-1 border-[3px] border-[#B3D4FF] rounded-[2rem] bg-white p-4 flex flex-col items-center justify-center gap-2 cursor-pointer card-hover map-card-hover shadow-sm" onclick="openModal('chef')">
+                            <div class="flex items-center gap-3 w-full justify-center mt-2">
+                                <div class="w-16 h-16 shrink-0 rounded-full bg-white bg-no-repeat shadow-inner border border-slate-100" style="background-image: url('主廚.png'); background-size: cover; background-position: center top;"></div>
+                                <div class="flex flex-col">
+                                    <p class="font-bold text-slate-800 whitespace-nowrap lg:text-lg">主廚</p>
+                                    <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">手邊程式遷移</p>
+                                </div>
+                            </div>
+                            <div class="text-xl font-bold text-slate-400 mt-2 tracking-widest">主廚區</div>
+                        </div>
+                    </div>
+
+                    <!-- 離開外框的箭頭 -->
+                    <div class="lg:col-start-2 lg:row-start-2 flex items-center justify-center order-3 lg:order-none py-2 lg:py-0">
+                        <div class="text-[#7A869A] text-4xl lg:text-5xl font-black rotate-90 lg:rotate-0 drop-shadow-md">▶</div>
+                    </div>
+
+                    <!-- 4. 主題餐廳 -->
+                    <div class="lg:col-start-3 lg:row-start-2 border-[3px] border-[#B3D4FF] rounded-[2.5rem] bg-white/95 p-6 flex flex-col items-center justify-center shadow-lg card-hover map-card-hover cursor-pointer min-h-[120px] lg:min-h-[350px] w-full order-5 lg:order-none gap-4" onclick="openModal('po')">
+                        <div class="flex flex-col items-center gap-3 w-full justify-center mt-2">
+                            <div class="w-20 h-20 rounded-full bg-white bg-no-repeat shadow-inner border-[3px] border-slate-200" style="background-image: url('主題餐廳.png'); background-size: cover; background-position: center top;"></div>
+                            <div class="text-center">
+                                <p class="font-bold text-slate-800 lg:text-lg">餐廳負責人</p>
+                                <p class="text-[10px] lg:text-xs text-slate-500 font-bold hidden lg:block">平台遷移統籌</p>
+                            </div>
+                        </div>
+                        <div class="text-xl font-bold text-slate-400 mt-auto tracking-widest">主題餐廳</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 呈現：引導至 SharePoint 資訊方框 ================= -->
+        <section class="w-full max-w-5xl mx-auto mt-4">
+            <div class="w-full bg-[#E2E8F0]/50 text-[#4A6E8C] font-black py-5 px-6 rounded-2xl border-2 border-slate-200 flex items-center justify-center gap-3 text-lg lg:text-xl shadow-inner">
+                <span class="text-2xl">💡</span>
+                <span class="tracking-widest">想知道更多？請到 SharePoint 搜尋 「數據上雲」</span>
+            </div>
+        </section>
+
+        <!-- ================= 區塊 2：生存看板 ================= -->
+        <section class="bg-white rounded-3xl shadow-xl p-6 lg:p-8 border-2 border-slate-200 mt-8 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-slate-50 rounded-bl-full -z-10 opacity-50"></div>
+            
+            <h2 class="text-2xl lg:text-3xl font-black text-[#4A6E8C] mb-6 lg:mb-8 border-b-2 border-slate-100 pb-3 flex items-center gap-3">
+                <span>📊</span> 生存看板
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div class="bg-slate-50 rounded-2xl p-6 border-2 border-slate-200 hover:shadow-md transition lg:col-span-2">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">💡 遷移 Must Know</h3>
+                    <ul class="space-y-3 text-sm lg:text-base text-slate-700 list-disc pl-5 font-semibold">
+                        <li>雲端倉儲工具以AWS為優先</li>
+                        <li>雲端數據與資料流將與地端有所差異</li>
+                        <li>全方位系統保留於地端，各服務需設計遷移計畫</li>
+                    </ul>
+                </div>
+
+                <div class="bg-teal-50 rounded-2xl p-6 border-2 border-teal-100 hover:shadow-md transition flex flex-col justify-center">
+                    <h3 class="text-xl font-bold text-teal-800 mb-4 flex items-center gap-2">🧰 遷移 Helping Tools</h3>
+                    <ul class="space-y-3 text-sm lg:text-base text-teal-900 list-disc pl-5 font-semibold">
+                        <li>上雲控管表(持續更新)</li>
+                        <li>雲地差異對照表(Q3)</li>
+                        <li>分析師的遷移教育訓練(Q4)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#334155] text-white py-8 mt-12 border-t-4 border-[#4A6E8C]">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-3">
+            <h2 class="text-xl lg:text-2xl font-bold tracking-wider">3年的遷移之路，需要你我一起完成</h2>
+        </div>
+    </footer>
+
+    <!-- 浮動問題回饋按鈕 -->
+    <a href="https://forms.cloud.microsoft/pages/responsepage.aspx?id=1S08mhOg80K-ue6VblIi_bZ8Os33sHtNh0frxRFwhYlUOTRJMkpITDJFNFhUOElFNU9ETDdEVFUyNy4u&route=shorturl" target="_blank" rel="noopener noreferrer" class="fixed bottom-8 right-8 bg-teal-600 hover:bg-teal-700 text-white p-4 rounded-full shadow-lg shadow-teal-600/30 transition-all transform hover:scale-110 z-50 flex items-center justify-center group border-2 border-teal-200" title="提出問題或回饋">
+        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-[100px] transition-all duration-300 ease-in-out font-bold ml-0 group-hover:ml-2">問題回饋</span>
+    </a>
+
+    <!-- 角色詳細資訊彈跳視窗 -->
+    <div id="character-modal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-50 hidden flex items-center justify-center backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl relative modal-enter border-2 border-slate-300 overflow-hidden flex flex-col max-h-[90vh]">
+            <button onclick="closeModal()" class="absolute top-3 lg:top-4 right-3 lg:right-4 text-slate-400 hover:text-slate-800 focus:outline-none bg-slate-100 hover:bg-slate-200 rounded-full p-2 transition z-10">
+                <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="bg-gradient-to-r from-slate-100 to-white p-5 lg:p-6 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 lg:gap-6 border-b border-slate-200 shrink-0">
+                <div id="modal-icon-container" class="shrink-0"></div>
+                <div class="mt-2 sm:mt-0">
+                    <h2 id="modal-title" class="text-2xl lg:text-3xl font-black text-slate-800"></h2>
+                    <p id="modal-role" class="text-slate-600 font-bold text-sm lg:text-lg mt-2 bg-white px-3 py-1 inline-block rounded-lg shadow-sm border border-slate-200"></p>
+                </div>
+            </div>
+            
+            <div class="p-5 lg:p-6 space-y-5 lg:space-y-6 overflow-y-auto">
+                <div>
+                    <h3 class="text-lg lg:text-xl font-bold border-l-4 border-[#4A6E8C] pl-3 mb-3 text-slate-800">🎯 核心任務</h3>
+                    <ul id="modal-tasks" class="list-none space-y-2 text-slate-700 font-medium text-sm lg:text-base"></ul>
+                </div>
+                <div class="bg-slate-50 p-4 lg:p-5 rounded-2xl border border-slate-200">
+                    <h3 class="text-base lg:text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">🤝 合作成員與協作事項</h3>
+                    <div id="modal-partners" class="space-y-3 text-slate-700 text-xs lg:text-sm font-medium"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 角色資料庫
+        const characterData = {
+            'da': {
+                role: '代表科別：DA',
+                name: '廚房維運',
+                borderColor: 'border-slate-300',
+                customImageUrl: '廚房維運.png',
+                tasks: [
+                    '打造對應 AWS 的基礎建設與介接管道。',
+                    '管理雲端環境的系統服務架構、權限與預算。',
+                    '協助廚務、主廚們在雲端環境工作流程順利銜接。'
+                ],
+                partners: [
+                    '<strong>主題餐廳負責人：</strong>溝通系統功能需求與雲端資料介接架構。',
+                    '<strong>主廚們：</strong>說明分析環境的架構需求。',
+                    '<strong>廚務與AI廚務：</strong>說明營運環境需求與架構需求。'
+                ]
+            },
+            'dm_ingredient': {
+                role: '代表科別：DM',
+                name: '導檔區 廚務',
+                borderColor: 'border-slate-300',
+                customImageUrl: '預製廚務.png',
+                tasks: [
+                    '執行 TD 數據遷移，負責將原始資料導入雲端。',
+                    '建立相關ETL流程、完成歷史資料Initial load。',
+                    '製作「雲地資料對照表」。'
+                ],
+                partners: [
+                    '<strong>加工區廚務、AI廚務：</strong>確保資料格式與品質能順利進入下一步驟。',
+                    '<strong>廚房維運：</strong>確認雲端資料儲存位置與介接機制。'
+                ]
+            },
+            'dm_ds_process': {
+                role: '代表科別：DM、DS',
+                name: '加工區 廚務',
+                borderColor: 'border-slate-300',
+                customImageUrl: '預製廚務.png',
+                tasks: [
+                    '負責資料清洗、加工與整檔程式遷移。',
+                    '建立相關ETL流程、完成歷史資料Initial load。',
+                    '製作「雲地資料對照表」。'
+                ],
+                partners: [
+                    '<strong>食材區廚務：</strong>供應整檔所需的來源資料。',
+                    '<strong>主廚：</strong>蒐集基於分析所需之加工資料範圍並提出申請。',
+                    '<strong>餐廳負責人：</strong>蒐集基於平台所需之加工資料範圍並提出申請，並協助平台改接統籌。'
+                ]
+            },
+            'ai': {
+                role: '代表科別：AI',
+                name: '加工區 AI廚務',
+                bgPosition: '34% 77%',
+                borderColor: 'border-slate-300',
+                customImageUrl: 'AI廚務.png',
+                tasks: [
+                    '負責 Model 流程的搬遷與 AWS Sagemaker 環境接軌。',
+                    '推動26年三案 Pilot 執行。',
+                    '提供「雲地資料對照表」。'                    
+                ],
+                partners: [
+                    '<strong>廚房維運：</strong>確保模型訓練所需的資源與服務方案。',
+                    '<strong>廚務：</strong>供應模型所需的來源資料。',
+                    '<strong>主廚：</strong>確保業務邏輯如預期，並驗證遷移模型成效影響。'
+                    
+                ]
+            },
+            'chef': {
+                role: '代表科別：BA、RI、CM、DP、CI',
+                name: '主廚',
+                bgPosition: '61% 51%',
+                borderColor: 'border-amber-200',
+                customImageUrl: '主廚.png',
+                tasks: [
+                    '配合雲端資安最小化開放原則，使用雲端數據。',
+                    '隨數據到位，使用Redshift進行地端分析 SQL 改寫，遷移原本地端分析行為。',
+                    '釐清分析情境並決定出菜方式（報表、行銷名單、ad-hoc 分析）。'
+                ],
+                partners: [
+                    '<strong>廚務團隊：</strong>確認所需資料已排入上雲控管表並完成驗證。'
+                ]
+            },
+            'po': {
+                role: '代表科別：DP',
+                name: '餐廳負責人',
+                bgPosition: '86% 30%',
+                borderColor: 'border-slate-300',
+                customImageUrl: '主題餐廳.png',
+                tasks: [
+                    '評估平台遷雲策略，統籌平台遷移事宜。',
+                    '針對資料需求與功能需求，安排對應資源。'
+                ],
+                partners: [
+                    '<strong>廚房維運：</strong>協助數據平台所需之系統功能開發與架構、資料流設計。',
+                    '<strong>廚務團隊：</strong>安排資料上雲與實際導整檔程式搬遷。'
+                ]
+            }
+        };
+
+        const modal = document.getElementById('character-modal');
+        
+        function openModal(charId) {
+            const char = characterData[charId];
+            if(!char) return;
+
+            const modalIconContainer = document.getElementById('modal-icon-container');
+            
+            if (char.customImageUrl) {
+                modalIconContainer.innerHTML = `
+                    <div class="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl shadow-md border-4 ${char.borderColor} bg-white bg-no-repeat"
+                         style="background-image: url('${char.customImageUrl}'); background-size: cover; background-position: center top;">
+                    </div>`;
+            } else {
+                modalIconContainer.innerHTML = `
+                    <div class="w-24 h-24 lg:w-32 lg:h-32 rounded-2xl shadow-md border-4 ${char.borderColor} bg-white bg-no-repeat" 
+                         style="background-image: url('image_d1c080.png'); background-size: 800%; background-position: ${char.bgPosition};">
+                    </div>`;
+            }
+
+            document.getElementById('modal-title').innerText = char.name;
+            document.getElementById('modal-role').innerText = char.role;
+            
+            const tasksUl = document.getElementById('modal-tasks');
+            tasksUl.innerHTML = '';
+            char.tasks.forEach(task => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-2';
+                li.innerHTML = `<span class="text-[#4A6E8C] font-bold shrink-0">✔</span> <span class="align-middle mt-0.5">${task}</span>`;
+                tasksUl.appendChild(li);
+            });
+
+            const partnersDiv = document.getElementById('modal-partners');
+            partnersDiv.innerHTML = '';
+            char.partners.forEach(partner => {
+                const p = document.createElement('p');
+                p.className = "flex items-start gap-2 bg-white px-3 py-2 rounded-lg border border-slate-100 shadow-sm leading-relaxed";
+                p.innerHTML = `<span class="mt-0.5 text-[#4A6E8C] shrink-0">🔹</span> <span>${partner}</span>`;
+                partnersDiv.appendChild(p);
+            });
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
